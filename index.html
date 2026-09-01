@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文件传输时间计算器 · Transfer Time Calculator</title>
+<meta name="description" content="免费开源、纯浏览器运行的文件传输时间计算器，输入文件大小和网速，正确处理Mbps和MB/s单位换算，估算上传下载耗时。不联网。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>文件传输<span class="accent">时间</span>计算器</h1>
+    <p class="tagline">输入文件大小和网速，正确处理"Mbps"（兆比特/秒）和"MB/s"（兆字节/秒）这两个最容易搞混的单位，估算上传或下载需要多久。纯前端计算，不联网。</p>
+  </header>
+
+  <main class="layout">
+    <section class="controls">
+      <div class="field">
+        <label>文件大小</label>
+        <div class="input-row">
+          <input id="sizeInput" type="number" value="5" min="0" step="0.1">
+          <select id="sizeUnitSelect">
+            <option value="KB">KB</option>
+            <option value="MB" selected>MB</option>
+            <option value="GB">GB</option>
+            <option value="TB">TB</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>网络速度</label>
+        <div class="input-row">
+          <input id="speedInput" type="number" value="100" min="0" step="1">
+          <select id="speedUnitSelect">
+            <option value="mbps" selected>Mbps（兆比特/秒，运营商常用）</option>
+            <option value="gbps">Gbps（吉比特/秒）</option>
+            <option value="MBps">MB/s（兆字节/秒，下载软件常用）</option>
+          </select>
+        </div>
+      </div>
+      <p class="tip">提示：运营商宣传的"100M宽带"通常指 100 Mbps（兆比特/秒），换算成下载软件显示的 MB/s 大约要除以 8，也就是理论峰值约 12.5 MB/s。</p>
+    </section>
+
+    <section class="result-wrap">
+      <div class="result-card">
+        <div class="result-num" id="timeOut">--</div>
+        <div class="result-label">预计传输时间</div>
+      </div>
+      <div class="detail-box">
+        <div class="detail-row"><span>文件大小</span><span id="sizeBytesOut" class="val"></span></div>
+        <div class="detail-row"><span>实际吞吐速度</span><span id="speedBytesOut" class="val"></span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>MIT 协议开源，纯前端计算，不联网。实际速度会受网络波动、服务器限速等因素影响，仅为理论峰值估算。</p>
+    <p>想要上传、预览、分享、会员一体的完整网盘系统？<a href="https://inzyxuashop.com/wangpan-yuanma.html" target="_blank" rel="noopener">看看完整版网盘系统源码 →</a></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
